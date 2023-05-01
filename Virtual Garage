@@ -1,0 +1,73 @@
+class Vehicle:
+    def __init__(self, make, model, year, weight):
+        self.make = make
+        self.model = model
+        self.year = year
+        self.weight = weight
+
+    def display_info(self):
+        return f"Make: {self.make}, Model: {self.model}, Year: {self.year}, Weight: {self.weight} kg"
+
+class Car(Vehicle):
+    def __init__(self, make, model, year, weight, num_doors):
+        super().__init__(make, model, year, weight)
+        self.num_doors = num_doors
+
+    def display_info(self):
+        return super().display_info() + f", Number of Doors: {self.num_doors}"
+
+class Pickup(Vehicle):
+    def __init__(self, make, model, year, weight, bed_length):
+        super().__init__(make, model, year, weight)
+        self.bed_length = bed_length
+
+    def display_info(self):
+        return super().display_info() + f", Bed Length: {self.bed_length} ft"
+
+def add_car():
+    make = input("Enter the car's make: ")
+    model = input("Enter the car's model: ")
+    year = int(input("Enter the car's year: "))
+    weight = int(input("Enter the car's weight in kg: "))
+    num_doors = int(input("Enter the number of doors: "))
+    return Car(make, model, year, weight, num_doors)
+
+def add_pickup():
+    make = input("Enter the pickup's make: ")
+    model = input("Enter the pickup's model: ")
+    year = int(input("Enter the pickup's year: "))
+    weight = int(input("Enter the pickup's weight in kg: "))
+    bed_length = float(input("Enter the bed length in ft: "))
+    return Pickup(make, model, year, weight, bed_length)
+
+def main():
+    garage = []
+
+    while True:
+        print("\nVirtual Garage Menu:")
+        print("1. Add a Car")
+        print("2. Add a Pickup Truck")
+        print("3. Display Garage Contents")
+        print("4. Exit")
+        choice = int(input("Choose an option: "))
+
+        if choice == 1:
+            garage.append(add_car())
+            print("Car has been added to the garage.")
+        elif choice == 2:
+            garage.append(add_pickup())
+            print("Pickup truck has been added to the garage.")
+        elif choice == 3:
+            if len(garage) == 0:
+                print("The garage is empty.")
+            else:
+                for index, vehicle in enumerate(garage):
+                    print(f"\nVehicle {index+1}:")
+                    print(vehicle.display_info())
+        elif choice == 4:
+            break
+        else:
+            print("Invalid option. Please choose a valid option.")
+
+if __name__ == "__main__":
+    main()
