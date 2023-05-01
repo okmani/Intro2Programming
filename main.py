@@ -17,8 +17,8 @@ def displayIntro():
 
 def chooseCave():
     cave = ''
-    while cave != '1' and cave != '2':
-        print('Which cave will you go into? (1 or 2)')
+    while cave != '0' and cave != '1':
+        print('Which cave will you go into? (0 or 1)')
         cave = input()
 
     return cave
